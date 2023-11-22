@@ -47,33 +47,46 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div>
-        <input
-          type="text"
-          placeholder="Search for a character..."
-          value={input}
-          onChange={onUserChange}
-        />
-        {characters.length > 0 && (
-          <div>
-            {characters.map((character) => {
-              return (
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <h1>Search for a character!</h1>
+      <div className="screen">
+        <div className="search-bar-container">
+          <input
+            type="text"
+            placeholder="Search for a character..."
+            value={input}
+            onChange={onUserChange}
+            className="search-bar"
+          />
+          {characters.length > 0 && (
+            <div className="suggestion-list">
+              {characters.map((character) => (
                 <div
                   className="suggestion-item"
                   key={character.id}
-                  onClick={(e) => {
+                  onClick={() => {
                     setInput("");
                     setCharacters([]);
-                    alert(character.name);
+                    alert(`Selected character: ${character.name}`);
                   }}
                 >
                   {character.name}
                 </div>
-              );
-            })}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
+        <button
+          className="search-button"
+          onClick={() => {
+            if (characters.length > 0)
+              alert(`Selection: ${characters[0].name}`);
+          }}
+        >
+          search
+        </button>
       </div>
     </div>
   );

@@ -1,3 +1,52 @@
+.screen {
+  display: flex;
+}
+
+.search-bar-container {
+  display: flex;
+  position: relative;
+  width: 400px;
+  margin-top: 40px;
+}
+
+.search-bar {
+  padding: 8px;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  flex-grow: 1;
+  font-size: 15px;
+}
+
+.search-bar:focus {
+  outline: none;
+}
+
+.suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 5px;
+  cursor: pointer;
+}
+
 .suggestion-item:hover {
-  background-color: #EEEEEE;
+  background-color: #f0f0f0;
+}
+
+.search-button {
+  padding: 9px;
+  background-color: #EC1D24;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 40px;
 }
