@@ -1,3 +1,9 @@
+# Backend section of the challenge
+
+## Entity relationship diagram
+
+![alt text](ERD.png)
+
 ## Creating the Update Endpoint
 
 To create an endpoint that accepts the DTO as the request body, I would create a `CharactersController` and set up a PATCH endpoint. This endpoint takes the `character_id` whose accomplices are to be updated as a URL parameter. Inside the controller, the DTO can be used as the body using the syntax `@Body() updateAccomplicesDTO: UpdateAccomplicesDto`. The logic for the update will be implemented within the controller. The approach involves obtaining the existing accomplices from the table, by querying both `character_id_1` and `character_id_2` for the supplied `character_id` where the relationship is `Accomplice`, checking for duplicates in the provided list, removing excess accomplices, and inserting the new ones.
