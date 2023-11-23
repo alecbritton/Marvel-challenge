@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Search for a character!</h1>
+      <h1 className="header">Search for a character!</h1>
       <div className="search-container">
         <div className="search-bar-container">
           <input

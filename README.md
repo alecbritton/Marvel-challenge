@@ -16,4 +16,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Notes on the frontend section of the challenge
 
-I am happy with the solution I have chosen for this section of the challenge. A few things to note, firstly with more time I would have stored the API key in an environment variable, or even server-side if this project were to be fleshed out even more. Secondly, I included a search button but wasn't sure what functionality to add to it, so I just added an alert for the top suggestion in the list. Finally, I would maybe include some form of loading widget while the request processes.
+I am happy with the solution I have chosen for this section of the challenge. A few things to note, firstly with more time I would have stored the API key in an environment variable, or even server-side if this project were to be fleshed out even more. Secondly, I included a search button but wasn't sure what functionality to add to it, so I just added an alert for the top suggestion in the list. Finally, I would maybe include some form of loading widget while the request processes, and also flesh out the styling to include a more comprehensive theme.
