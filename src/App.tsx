@@ -14,12 +14,14 @@ interface MarvelResponse {
 function App() {
   const [characters, setCharacters] = useState<MarvelCharacter[]>([]);
   const [input, setInput] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const MARVEL_URL = "https://gateway.marvel.com:443/v1/public";
   const MARVEL_API_KEY = "15c480e9c4dbce6a4d5424def1269e05";
 
   const fetchMarvelData = async (searchQuery: string) => {
     try {
+      setIsLoading(true);
       const marvelData = await axios.get<MarvelResponse>(
         `${MARVEL_URL}/characters?nameStartsWith=${searchQuery}&apikey=${MARVEL_API_KEY}`
       );
@@ -28,6 +30,8 @@ function App() {
     } catch (error) {
       console.error(error);
       return { data: { results: [] } };
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,11 +51,9 @@ function App() {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div className="container">
       <h1>Search for a character!</h1>
-      <div className="screen">
+      <div className="search-container">
         <div className="search-bar-container">
           <input
             type="text"
@@ -60,32 +62,41 @@ function App() {
             onChange={onUserChange}
             className="search-bar"
           />
-          {characters.length > 0 && (
+          {input.length > 1 && !isLoading && (
             <div className="suggestion-list">
-              {characters.map((character) => (
-                <div
-                  className="suggestion-item"
-                  key={character.id}
-                  onClick={() => {
-                    setInput("");
-                    setCharacters([]);
-                    alert(`Selected character: ${character.name}`);
-                  }}
-                >
-                  {character.name}
-                </div>
-              ))}
+              {characters.length > 0
+                ? characters.map((character) => (
+                    <div
+                      className="suggestion-item"
+                      key={character.id}
+                      onClick={() => {
+                        alert(`Selected character: ${character.name}`);
+                        setInput("");
+                        setCharacters([]);
+                      }}
+                    >
+                      {character.name}
+                    </div>
+                  ))
+                : input.length > 1 && (
+                    <div className="suggestion-item">
+                      No characters found...
+                    </div>
+                  )}
             </div>
           )}
         </div>
         <button
           className="search-button"
           onClick={() => {
-            if (characters.length > 0)
+            if (characters.length > 0) {
               alert(`Selection: ${characters[0].name}`);
+              setInput("");
+              setCharacters([]);
+            }
           }}
         >
-          search
+          Search
         </button>
       </div>
     </div>
